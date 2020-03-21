@@ -75,6 +75,7 @@ namespace CommonElementsInTwoArrays
             // initialize an empty list to hold result
             List<int> list = new List<int>();
 
+            // while we still have values left in the arrays, compare the values and move the pointers
             while (p1 < array1.Length && p2 < array2.Length)
             {
                 if (array1[p1] == array2[p2])
