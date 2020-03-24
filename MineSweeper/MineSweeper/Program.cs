@@ -27,15 +27,64 @@ namespace MineSweeper
             //  [0, 1, 2, 2, 1],
             //  [0, 0, 1, -1, 1]]
 
+            int[,] field1 = {{0, 0, 0, 0, 0},
+                          {0, 1, 1, 1, 0},
+                          {0, 1, -1, 1, 0}};
+
+            // click(field1, 3, 5, 2, 2) should return:
+            // [[0, 0, 0, 0, 0],
+            //  [0, 1, 1, 1, 0],
+            //  [0, 1, -1, 1, 0]]
+
+            // click(field1, 3, 5, 1, 4) should return:
+            // [[-2, -2, -2, -2, -2],
+            //  [-2, 1, 1, 1, -2],
+            //  [-2, 1, -1, 1, -2]]
+
+
+            int[,] field2 = {{-1, 1, 0, 0},
+                          {1, 1, 0, 0},
+                          {0, 0, 1, 1},
+                          {0, 0, 1, -1}};
+
+            // click(field2, 4, 4, 0, 1) should return:
+            // [[-1, 1, 0, 0],
+            //  [1, 1, 0, 0],
+            //  [0, 0, 1, 1],
+            //  [0, 0, 1, -1]]
+
+            // click(field2, 4, 4, 1, 3) should return:
+            // [[-1, 1, -2, -2],
+            //  [1, 1, -2, -2],
+            //  [-2, -2, 1, 1],
+            //  [-2, -2, 1, -1]]
+
             int[,] result1 = MineSweeper(bombs1, 3, 3);
             int[,] result2 = MineSweeper(bombs2, 3, 4);
             int[,] result3 = MineSweeper(bombs3, 5, 5);
+
             Print2DArray(result1);
             Console.WriteLine();
             Print2DArray(result2);
             Console.WriteLine();
             Print2DArray(result3);
             Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+
+            int[,] clickresult1 = Click(field1, 3, 5, 2, 2);
+            int[,] clickresult2 = Click(field1, 3, 5, 1, 4);
+            int[,] clickresult3 = Click(field2, 4, 4, 0, 1);
+            int[,] clickresult4 = Click(field2, 4, 4, 1, 3);
+
+            Print2DArray(clickresult1);
+            Console.WriteLine();
+            Print2DArray(clickresult2);
+            Console.WriteLine();
+            Print2DArray(clickresult3);
+            Console.WriteLine();
+            Print2DArray(clickresult4);
+            
 
         }
 
@@ -71,7 +120,6 @@ namespace MineSweeper
             return field;
         }
 
-
         // method to print out the array in a nice visual way
         public static void Print2DArray(int[,] matrix)
         {
@@ -84,5 +132,31 @@ namespace MineSweeper
                 Console.WriteLine();
             }
         }
+
+        public static int[,] Click(int[,] field, int numRows, int numCols, int givenI, int givenJ)
+        {
+            // check if user's "click" was a cell with 0 in it
+            if (field[givenI, givenJ] == 0)
+            {
+                // reassign clicked cell
+                field[givenI, givenJ] = -2;
+                // loop through 
+                for (int i = givenI - 1; i < givenI + 2; i++)
+                {
+                    for (int j = givenJ - 1; j < givenJ + 2; j++)
+                    {
+                        if (0 <= i && i < numRows && 0 <= j && j < numCols && field[i, j] == 0)
+                        {
+                            // alter 9 squares around clicked cell if they are equal to zero
+                            field[i, j] = -2;
+                        }
+                    }
+                }
+            }
+            return field;
+        }
+
     }
+
 }
+
