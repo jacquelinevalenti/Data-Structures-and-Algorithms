@@ -43,5 +43,22 @@ namespace ReverseStrings
             return reversed;
            
         }
+
+        // alternate way
+        public static void Reverse2(char[] array)
+        {
+            int leftindex = 0;
+            int rightindex = array.Length - 1;
+
+            while (rightindex > leftindex)
+            {
+                char temp = array[leftindex];
+                array[leftindex] = array[rightindex];
+                array[rightindex] = temp;
+
+                rightindex--;
+                leftindex++;
+            }
+        }
     }
 }
