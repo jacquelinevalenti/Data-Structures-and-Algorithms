@@ -73,16 +73,15 @@ namespace MineSweeper
             Console.WriteLine();
 
             int[,] clickresult1 = Click(field1, 3, 5, 2, 2);
-            int[,] clickresult2 = Click(field1, 3, 5, 1, 4);
-            int[,] clickresult3 = Click(field2, 4, 4, 0, 1);
-            int[,] clickresult4 = Click(field2, 4, 4, 1, 3);
-
             Print2DArray(clickresult1);
             Console.WriteLine();
+            int[,] clickresult2 = Click(field1, 3, 5, 1, 4);
             Print2DArray(clickresult2);
             Console.WriteLine();
+            int[,] clickresult3 = Click(field2, 4, 4, 0, 1);
             Print2DArray(clickresult3);
             Console.WriteLine();
+            int[,] clickresult4 = Click(field2, 4, 4, 1, 3);
             Print2DArray(clickresult4);
             
 
